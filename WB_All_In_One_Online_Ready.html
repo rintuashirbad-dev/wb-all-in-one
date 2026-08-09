@@ -1,0 +1,161 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>West Bengal All In One</title>
+<style>
+body{margin:0;font-family:Segoe UI;background:#081a35;color:#fff}
+header{padding:18px;background:#0b2d5f;position:sticky;top:0}
+h1{margin:0;color:#ffd54f}
+.wrap{max-width:1200px;margin:auto;padding:20px}
+#search{width:100%;padding:14px;border-radius:30px;border:none;margin:20px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#123d7a;padding:22px;border-radius:18px;cursor:pointer;transition:.2s;box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.card:hover,.highlight{outline:3px solid gold;transform:translateY(-5px)}
+.page{display:none}
+.list a{display:block;background:#eef4ff;color:#123;margin:10px 0;padding:12px;border-radius:10px;text-decoration:none}
+.back{margin:15px 0;padding:10px 16px}
+</style>
+<style>
+.online-footer{
+  text-align:center;
+  margin:35px 0 10px;
+  padding:14px;
+  color:#cfe1ff;
+  font-size:13px;
+  opacity:.9;
+}
+.online-footer strong{color:#ffd54f}
+</style>
+</head><body>
+<header><div class="wrap" style="display:flex;justify-content:space-between;align-items:center">
+<h1>West Bengal All In One</h1>
+<div>
+<button onclick="adminLogin()" style="padding:8px 14px;border-radius:8px;border:none;background:#ffd54f;cursor:pointer">Admin Login</button>
+<button onclick="showRegister()" style="padding:8px 14px;border-radius:8px;border:none;background:#00c853;color:#fff;cursor:pointer">User Register</button>
+<button onclick="showLogin()" style="padding:8px 14px;border-radius:8px;border:none;background:#2196f3;color:#fff;cursor:pointer">User Login</button>
+</div></div></header>
+<div class="wrap">
+<div id="home">
+<div id="authBox" style="display:none;background:#123d7a;padding:20px;border-radius:15px;margin:20px 0">
+<h2 id="authTitle"></h2>
+<div id="msg"></div>
+<input id="nm" placeholder="Name" style="display:block;margin:8px 0;padding:10px;width:100%">
+<input id="mb" placeholder="Mobile" style="display:block;margin:8px 0;padding:10px;width:100%">
+<input id="em" placeholder="Email" style="display:block;margin:8px 0;padding:10px;width:100%">
+<input id="pw" type="password" placeholder="Password" style="display:block;margin:8px 0;padding:10px;width:100%">
+<button onclick="submitAuth()">Submit</button>
+<button onclick="forgotPass()">Forgot Password</button>
+</div>
+
+<input id="search" placeholder="Search category e.g. Government, Private, Citizen, Schemes">
+<div class="grid" id="cards">
+<div class="card" data-page="gov">🏛 Government Services</div>
+<div class="card" data-page="private">💼 Private Services</div>
+<div class="card" data-page="citizen">👤 Citizen Services</div>
+<div class="card" data-page="scheme">📜 Government Schemes</div>
+<div class="card" data-page="news">📰 Latest News</div>
+<div class="card" data-page="contact">📞 Contact</div>
+</div></div>
+
+<div id="gov" class="page"><button class="back">⬅ Back</button><h2>Government Services</h2>
+<div class="list">
+<a target="_blank" href="https://www.wb.gov.in">West Bengal Government</a>
+<a target="_blank" href="https://edistrict.wb.gov.in">e-District</a>
+<a target="_blank" href="https://banglarbhumi.gov.in">BanglarBhumi</a>
+<a target="_blank" href="https://psc.wb.gov.in">WBPSC</a>
+<a target="_blank" href="https://wbpolice.gov.in">WB Police</a>
+</div></div>
+
+<div id="private" class="page"><button class="back">⬅ Back</button><h2>Private Services</h2>
+<div class="list">
+<a target="_blank" href="https://www.naukri.com">Naukri</a>
+<a target="_blank" href="https://in.indeed.com">Indeed</a>
+<a target="_blank" href="https://www.linkedin.com/jobs">LinkedIn Jobs</a>
+</div></div>
+
+<div id="citizen" class="page"><button class="back">⬅ Back</button><h2>Citizen Services</h2>
+<div class="list">
+<a target="_blank" href="https://www.digilocker.gov.in">DigiLocker</a>
+<a target="_blank" href="https://web.umang.gov.in">UMANG</a>
+<a target="_blank" href="https://passportindia.gov.in">Passport Seva</a>
+</div></div>
+
+<div id="scheme" class="page"><button class="back">⬅ Back</button><h2>Government Schemes</h2><p>Scheme cards will be added.</p></div>
+<div id="news" class="page"><button class="back">⬅ Back</button><h2>Latest News</h2><p>Future admin-managed section.</p></div>
+<div id="contact" class="page"><button class="back">⬅ Back</button><h2>Contact</h2><p>Rintu Ghosh<br>8927116393<br>Rasui, Ketugram, Katwa, Purba Bardhaman, WB</p></div>
+
+<div class="online-footer">
+  <strong>West Bengal All In One</strong> · Free Citizen Information Portal
+</div>
+</div>
+<script>
+const home=document.getElementById('home');
+document.querySelectorAll('.card').forEach(c=>c.onclick=()=>{
+home.style.display='none';
+document.getElementById(c.dataset.page).style.display='block';
+});
+document.querySelectorAll('.back').forEach(b=>b.onclick=()=>{
+document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+home.style.display='block';
+});
+search.oninput=e=>{
+let q=e.target.value.toLowerCase();
+document.querySelectorAll('.card').forEach(c=>{
+let hit=c.textContent.toLowerCase().includes(q);
+c.classList.toggle('highlight',hit&&q);
+if(hit&&q)c.scrollIntoView({behavior:'smooth',block:'center'});
+});
+};
+
+function adminLogin(){
+ const id=prompt("Admin ID");
+ if(id===null)return;
+ const pass=prompt("Password");
+ if(id==="admin" && pass==="123456"){
+   alert("Admin Login Successful");
+   document.getElementById('home').style.display='none';
+   document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+   let ex=document.getElementById('adminPanel');
+   if(ex){ex.style.display='block';return;}
+   const d=document.createElement('div');
+   d.id='adminPanel';
+   d.className='page';
+   d.style.display='block';
+   d.innerHTML=`<button class="back" onclick="back()">⬅ Back</button>
+   <h2>Admin Dashboard</h2>
+   <div class="list">
+   <a href="#">➕ Add Government Website</a>
+   <a href="#">➕ Add Private Website</a>
+   <a href="#">➕ Add Citizen Service</a>
+   <a href="#">➕ Add Education</a>
+   <a href="#">➕ Add Scheme</a>
+   <a href="#">➕ Add News</a>
+   </div>
+   <p>Demo Admin<br>ID: admin<br>Password: 123456</p>`;
+   document.querySelector('.wrap').appendChild(d);
+ }else{
+   alert("Invalid Admin Login");
+ }
+}
+
+
+let mode='register';
+function showRegister(){mode='register';authTitle.innerText='User Register';authBox.style.display='block';}
+function showLogin(){mode='login';authTitle.innerText='User Login';authBox.style.display='block';}
+function submitAuth(){
+ if(mode==='register'){
+  localStorage.setItem('wbuser',JSON.stringify({n:nm.value,m:mb.value,e:em.value,p:pw.value}));
+  msg.innerHTML='<div style="color:#4caf50">Registration Successful</div>';
+ }else{
+  let u=JSON.parse(localStorage.getItem('wbuser')||'null');
+  if(u && u.e===em.value && u.p===pw.value){
+    msg.innerHTML='<div style="color:#4fc3f7">Login Successful</div>';
+  }else{
+    msg.innerHTML='<div style="color:#ff5252">Invalid Email or Password</div>';
+  }
+ }
+}
+function forgotPass(){
+ let u=JSON.parse(localStorage.getItem('wbuser')||'null');
+ if(u){alert('Saved Password: '+u.p);}else{alert('No registered user found.');}
+}
+</script></body></html>
