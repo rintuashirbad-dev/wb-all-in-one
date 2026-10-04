@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.env
+data/*.db
+data/.jwt_secret
+uploads/*
+!uploads/.gitkeep
+.pytest_cache/
