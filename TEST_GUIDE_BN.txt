@@ -1,0 +1,23 @@
+WB ASHIRBAD PORTAL — TEST PACKAGE
+================================
+
+LOCAL TEST (Windows)
+1. ZIP extract করুন।
+2. START_TEST_WINDOWS.bat-এ double-click করুন।
+3. প্রথমবার Python package install হবে; Internet connection লাগবে।
+4. Admin password চাইলে নিজের test password দিন।
+5. Browser-এ http://127.0.0.1:8000 খুলুন।
+6. Admin login username: admin; password: launcher-এ যেটি দিয়েছেন।
+7. বন্ধ করতে launcher-এর কালো command window-তে Ctrl+C চাপুন।
+
+IMPORTANT — DOMAIN / GITHUB
+- এই প্রজেক্ট FastAPI + SQLite backend ব্যবহার করে।
+- GitHub Pages static HTML/CSS/JS প্রকাশ করে; Python API চালাতে পারে না।
+- তাই শুধু GitHub-এ ফাইল রাখলে বা ZIP upload করলেই wbai.in-এ পূর্ণ সাইট ও Admin/Sync কাজ করবে না।
+- সম্পূর্ণ সাইটের জন্য Python-সমর্থিত VPS/hosting-এ এই project deploy করতে হবে, তারপর domain-কে সেই server-এ point করতে হবে।
+- GitHub repository-তে এই ZIP extract করে project-এর ভেতরের ফাইলগুলো commit/push করা যাবে; কিন্তু GitHub Pages-কে backend hosting হিসেবে ব্যবহার করবেন না।
+
+SECURITY
+- Production-এ শক্তিশালী ADMIN_PASSWORD এবং আলাদা JWT_SECRET সেট করুন।
+- .env, data/ এবং uploads/ public GitHub repository-তে প্রকাশ করবেন না।
+- এই package-এ কোনো live credential বা real user data যোগ করা হয়নি।

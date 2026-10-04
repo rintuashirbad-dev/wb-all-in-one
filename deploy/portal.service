@@ -1,0 +1,18 @@
+# /etc/systemd/system/portal.service
+[Unit]
+Description=Bilingual Service Portal (FastAPI + Uvicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=portal
+Group=portal
+WorkingDirectory=/opt/portal_site
+# Put ADMIN_PASSWORD, JWT_SECRET etc. in /opt/portal_site/.env (chmod 600)
+EnvironmentFile=/opt/portal_site/.env
+ExecStart=/opt/portal_site/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 2 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

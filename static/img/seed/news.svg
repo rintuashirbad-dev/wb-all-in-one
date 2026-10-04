@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+<filter id="b"><feGaussianBlur stdDeviation="40"/></filter></defs>
+<rect width="800" height="450" fill="url(#g)"/>
+<g filter="url(#b)"><circle cx="213" cy="5" r="208" fill="#38bdf8" opacity="0.26"/><circle cx="244" cy="8" r="89" fill="#38bdf8" opacity="0.30"/><circle cx="711" cy="188" r="136" fill="#ffffff" opacity="0.37"/><circle cx="725" cy="182" r="146" fill="#0f766e" opacity="0.34"/><circle cx="234" cy="439" r="127" fill="#0f766e" opacity="0.53"/></g>
+<rect x="290" y="115" width="220" height="220" rx="50" fill="#ffffff" fill-opacity=".22" stroke="#fff" stroke-opacity=".6" stroke-width="2"/>
+<text x="400" y="262" font-size="120" text-anchor="middle" font-family="Segoe UI Emoji, Noto Color Emoji, sans-serif">📰</text>
+</svg>
